@@ -1,4 +1,9 @@
+# -*- coding: utf-8 -*-
 class LinksController < ApplicationController
+  
+  before_filter :authorize_user_read, :except => [:show, :index, :new, :create]  
+  before_filter :authenticate_user!, :only => [:new, :create]
+
   def index
     @links = Link.all
   end
@@ -42,4 +47,15 @@ class LinksController < ApplicationController
     flash[:notice] = "Successfully destroyed link."
     redirect_to links_url
   end
+
+  protected
+
+  def authorize_user_read
+    @link = Link.find(params[:id])
+    if @link.user != current_user
+      redirect_to links_url
+      flash[:notice] = "Brak uprawnień."
+    end
+  end
+
 end
