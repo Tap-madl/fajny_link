@@ -1,5 +1,7 @@
 FajnyLink::Application.routes.draw do
-  resources :links
+  resources :links do
+    resources :comments
+  end
 
   devise_for :users
 
