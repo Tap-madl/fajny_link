@@ -1,4 +1,5 @@
 FajnyLink::Application.routes.draw do
+  
   resources :links do
     resources :comments
     collection do
@@ -7,6 +8,10 @@ FajnyLink::Application.routes.draw do
   end
 
   devise_for :users
+
+  resources :users do
+    resources :links
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

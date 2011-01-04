@@ -1,0 +1,11 @@
+class UsersController < ApplicationController
+
+  before_filter do
+    @user = current_user
+  end
+
+  def show
+    @links = @user.links.all
+  end
+
+end
