@@ -1,23 +1,10 @@
-<!-- nowe start -->
-<%= form_tag links_path, :method => 'get', :id => "links_search" do %> 
-  <p>
-     <%= hidden_field_tag :direction, params[:direction] %>
-     <%= hidden_field_tag :sort, params[:sort] %>
-
-     <%= text_field_tag :search, params[:search] %>
-     <%= submit_tag "Search", :title => nil %>
-  </p>
-  <div id="links"><%= render 'index' %></div>
-<% end %>
-<!-- nowe koniec -->
-
-<table>
+<table class="pretty">
   <tr>
 	  <!-- atrubut sortowania -->	  
     <th><%= sortable "title", "Title" %></th>
     <th><%= sortable "url", "Url" %></th>
     <th><%= sortable "body", "Body" %></th>
-    <th><%= sortable "user.username", "User" %></th>
+    <th>User</th>
   </tr>
   <% for link in @links %>
     <tr>
@@ -31,5 +18,5 @@
     </tr>
   <% end %>
 </table>
+<%= will_paginate @links %>
 
-<p><%= link_to "New Link", new_link_path %></p>

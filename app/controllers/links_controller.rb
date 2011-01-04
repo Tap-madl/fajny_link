@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 class LinksController < ApplicationController
+helper_method :sort_column, :sort_direction # +
   
   before_filter :authorize_user_read, :except => [:show, :index, :new, :create]  
   before_filter :authenticate_user!, :only => [:new, :create]
 
   def index
-    @links = Link.all
+    #@links = Link.all
+    @links = Link.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 5, :page => params[:page]) # +
   end
 
   def show
@@ -57,5 +59,17 @@ class LinksController < ApplicationController
       flash[:notice] = "Brak uprawnień."
     end
   end
+
+  private # +
+  
+  def sort_column # +
+     Link.column_names.include?(params[:sort]) ? params[:sort] : "title" # +
+  end # +
+    
+  def sort_direction # +
+     %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc" # +
+  end # +
+
+
 
 end
