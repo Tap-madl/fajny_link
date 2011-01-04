@@ -94,7 +94,7 @@ PLATFORMS
 DEPENDENCIES
   devise (= 1.1.rc0)
   hirb
-  jquery-rails
+  jquery-rails (>= 0.2.6)
   mocha
   nifty-generators
   rails (= 3.0.3)
