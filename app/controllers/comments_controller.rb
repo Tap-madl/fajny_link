@@ -4,13 +4,16 @@ class CommentsController < ApplicationController
   before_filter :authorize_user_destroy, :only => [:destroy]
   def create
     @link = Link.find(params[:link_id])
+    @link.count = @link.count + 1
     @comment = @link.comments.create(params[:comment])
     @comment.user = current_user
+    @comment.link = @link
     @comment.save
     redirect_to link_path(@link)
   end
 
   def destroy
+    @comment.link.count = @comment.link.count - 1;
     @comment.destroy
     redirect_to link_path(@link)
   end

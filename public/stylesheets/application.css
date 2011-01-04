@@ -1,5 +1,5 @@
 .pretty th .current {
- padding-right: 12px;
+ padding-right: 15px;
  background-repeat: no-repeat;
  background-position: right center;
 }
@@ -11,3 +11,65 @@
 .pretty th .desc {
   background-image: url(/images/down_arrow.gif);
  }
+
+#linki {
+	color:#1BA0C2;
+	border-collapse: separate;
+	border-width: 2px;
+	border-style: solid;
+	background-color:#E0FFFE;
+	width:500px
+}
+
+
+
+
+
+#tytul {
+	color:#116378;
+	font-size:20px;
+	font-weight:600;
+	text-align:center
+}
+
+#user_name {
+	font-style:italic;
+	text-align:right
+}
+
+
+#glosuj_data {
+	height:60px;
+	vertical-align: top
+}
+
+#ocena_komentarz {
+	vertical-align: bottom;
+	height:30px
+}
+
+#ocena {
+	text-align:left;
+	font-size:14px
+}
+
+#data {
+	text-align:right;
+	font-size:14px
+}
+
+#url {
+	font-size:18px;
+	height:25px;
+	text-align:center
+}
+
+#opis {
+	font-size:16px;
+	height:50px;
+	vertical-align: bottom;
+}
+
+#kom {
+	text-align: right
+}

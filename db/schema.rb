@@ -27,7 +27,6 @@ ActiveRecord::Schema.define(:version => 20110104213054) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "count"
     t.boolean  "private"
   end
 

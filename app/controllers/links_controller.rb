@@ -6,12 +6,12 @@ class LinksController < ApplicationController
   before_filter :authenticate_user!, :only => [:new, :create]
 
   before_filter :only => [:index, :tags] do
-    @tags = Link.tag_counts  # for tag clouds    
+    @tags = Link.where(:private => false).tag_counts  # for tag clouds    
   end
 
   def index
     # @links = Link.all
-    @links = Link.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 5, :page => params[:page]) # +
+    @links = Link.search(params[:search]).where(:private => false).order(sort_column + " " + sort_direction).paginate(:per_page => 5, :page => params[:page]) # +
   end
 
   def show
