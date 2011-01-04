@@ -1,12 +1,16 @@
 # -*- coding: utf-8 -*-
 class LinksController < ApplicationController
-helper_method :sort_column, :sort_direction # +
+  helper_method :sort_column, :sort_direction # +
   
-  before_filter :authorize_user_read, :except => [:show, :index, :new, :create]  
+  before_filter :authorize_user_read, :except => [:show, :index, :new, :create, :tags]  
   before_filter :authenticate_user!, :only => [:new, :create]
 
+  before_filter :only => [:index, :tags] do
+    @tags = Link.tag_counts  # for tag clouds    
+  end
+
   def index
-    #@links = Link.all
+    # @links = Link.all
     @links = Link.search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 5, :page => params[:page]) # +
   end
 
@@ -49,6 +53,12 @@ helper_method :sort_column, :sort_direction # +
     flash[:notice] = "Successfully destroyed link."
     redirect_to links_url
   end
+
+  def tags
+    @links = Link.tagged_with(params[:name]).search(params[:search]).order(sort_column + " " + sort_direction).paginate(:per_page => 5, :page => params[:page])
+    render 'index'
+  end
+
 
   protected
 

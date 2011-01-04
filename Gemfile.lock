@@ -28,6 +28,7 @@ GEM
       activemodel (= 3.0.3)
       activesupport (= 3.0.3)
     activesupport (3.0.3)
+    acts-as-taggable-on (2.0.6)
     arel (2.0.4)
     builder (2.1.2)
     daemons (1.1.0)
@@ -92,6 +93,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts-as-taggable-on
   devise (= 1.1.rc0)
   hirb
   jquery-rails (>= 0.2.6)

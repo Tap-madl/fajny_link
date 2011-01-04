@@ -17,6 +17,9 @@
   <strong>User:</strong>
   <%= @link.user.username %>
 </p> 
+<p>
+  Tags: <%= @link.tag_list %>
+</p>
 
 <h2>Comments</h2>
 <% @link.comments.each do |comment| %>

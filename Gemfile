@@ -1,16 +1,26 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.3'
+
+# paginacja
 gem 'will_paginate', '3.0.pre2' # +
-gem 'jquery-rails','>= 0.2.6'		# +
+
+# obsluga jquery
+gem 'jquery-rails','>= 0.2.6'	# +
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3-ruby', :require => 'sqlite3'
+
+# engine do zarzadzania logowaniem userow
 gem 'devise', '1.1.rc0'  
 
+# troche fajniejsze generatory
 gem "nifty-generators", :group => :development
+
+# tagowanie
+gem 'acts-as-taggable-on'
 
 # Use unicorn as the web server
 gem 'unicorn'

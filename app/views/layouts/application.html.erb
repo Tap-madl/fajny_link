@@ -1,26 +1,81 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html>
 <head>
   <title>FajnyLink</title>
   <%= stylesheet_link_tag :all %>
   <%= javascript_include_tag :defaults %>
-
   <%= csrf_meta_tag %>
 </head>
 <body>
-  <% flash.each do |name, msg| %>
-        <%= content_tag :div, msg, :id => "flash_#{name}" %>
-  <% end %>
-  <div id="user_nav">  
-    <% if user_signed_in? %>  
+
+
+
+
+
+<div id="ramka"><div id="nazwa">Fajny Link</div></div>
+<div id="ramka2">
+	<div id="nav">
+		<p>
+			
+			<a><%= link_to "Strona Glowna", links_path %></a> |
+			<a href="">Kategorie</a> |
+			<a href="">Top</a> 
+		</p>
+	</div>
+	
+	<div id="info">
+	Witaj na stronie! <script src="http://szabloniki.com/skrypty/pobierz.php?id=dzis" type=""></script> <script src="http://szabloniki.com/skrypty/pobierz.php?id=imieniny" type=""></script>
+	</div>
+</div>
+			
+<div id="wrapper">
+	
+	<div id="l_menu">	
+	
+		     <% if user_signed_in? %>  
      Signed in as <%= current_user.email %>. Not you?  
      <%= link_to "Sign out", destroy_user_session_path %>  
     <% else %>  
      <%= link_to "Sign up", new_user_registration_path %> or  
      <%= link_to "Sign in", new_user_session_path %>  
-    <% end %>  
+    <% end %> 
+		
+		<br><br><br><br>
+		
+	<center>	<%= form_tag links_path, :method => 'get', :id => "links_search" do %> 
+  <p>
+     <%= hidden_field_tag :direction, params[:direction] %>
+     <%= hidden_field_tag :sort, params[:sort] %>
+      <%= text_field_tag :search, params[:search] %>
+     <%= submit_tag "Search", :title => nil %>
+  </p>
+  
+<% end %></center>
+
+  <% tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class| %>
+  	<%= link_to tag.name, tags_links_path(:name=>tag.name), :class => css_class %>
+  <% end %>
+</div>
+
+	
+	
+<div id="content">
+   <% flash.each do |name, msg| %>
+        <%= content_tag :div, msg, :id => "flash_#{name}" %>
+  <% end %>
+  <div id="user_nav">  
+  
+  
+		
+
   </div>
 <%= yield %>
+
+</div>
+</div>
+
+<div id="foot">Copyright by adresstrony.pl | Szablon wykonała <a href="http://szabloniki.com" title="szablony">Sliffka</a></div>
+
 
 </body>
 </html>
