@@ -1,0 +1,6 @@
+pl:
+  helpers:
+    submit:
+      create: "Zapisz kontakt"
+      #create: "Utwórz fortunkę"
+      update: "Zapisz zmiany"

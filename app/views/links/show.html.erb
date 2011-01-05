@@ -1,5 +1,3 @@
-<p>Ilosc komenciorow: <%= @link.comments.length %> </p>
-
 <p>
   <strong>Title:</strong>
   <%= @link.title %>
@@ -18,45 +16,53 @@
   <%= @link.user.username %>
 </p> 
 <p>
-  Tags: <%= @link.tag_list %>
+  Tagi: <%= @link.tag_list %>
 </p>
 
-<h2>Comments</h2>
+<h2>Komentarze</h2>
 <% @link.comments.each do |comment| %>
   <p>
-    <b>Commenter:</b>
+    <b>Komentator:</b>
     <%= comment.user.username %>
   </p>
  
   <p>
-    <b>Comment:</b>
+    <b>Komentarz:</b>
     <%= comment.body %>
   </p>
 
   <% if comment.user == current_user %>
   <p>
-  <%= link_to 'Destroy Comment', [@link, comment],
-               :confirm => 'Are you sure?',
+  <%= link_to 'Usuń komentarz', [@link, comment],
+               :confirm => 'Napewno?',
                :method => :delete %>
   </p>
   <% end %>
 <% end %>
 
-<h2>Add a comment:</h2>
-<%= form_for([@link, @link.comments.build]) do |f| %>
-
-  <div class="field">
-    <%= f.label :body %><br />
-    <%= f.text_area :body %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<% if user_signed_in? %>
+  <h2>Dodaj komentarz:</h2>
+  <%= form_for([@link, @link.comments.build]) do |f| %>
+    <div class="field">
+      Treść:<br />
+      <%= f.text_area :body, :rows => 5, :columns => 5 %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
+<% else %>
+  <h2>Trzeba być zalogowanym by móc komentować wpisy.</h2>
 <% end %>
 
+<% if @link.user == current_user %>
 <p>
-  <%= link_to "Edit", edit_link_path(@link) %> |
-  <%= link_to "Destroy", @link, :confirm => 'Are you sure?', :method => :delete %> |
-  <%= link_to "View All", links_path %>
+  <%= link_to "Edytuj", edit_link_path(@link) %> |
+  <%= link_to "Usuń", @link, :confirm => 'Napewno?', :method => :delete %> |
+  <%= link_to "Pokaż wszystkie", links_path %>
 </p>
-
+<% else %>
+<p>
+  <%= link_to "Pokaż wszystkie", links_path %>
+</p>  
+<% end %>

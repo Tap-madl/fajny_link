@@ -1,19 +1,26 @@
-Sortowanie:
-<%= sortable "title", "Tytuł" %>
-<%= sortable "url", "Url" %>
-<%= sortable "body", "Opis" %>
+<table class="pretty">
+  <tr>
+	  <!-- atrubut sortowania -->	  
+    <th><%= sortable "title", "Tytuł" %></th>
+    <th><%= sortable "url", "Url" %></th>
+    <th><%= sortable "body", "Opis" %></th>
+  </tr>
+</table>
 
 <br/><br/>
 
  <% for link in @links %>
 <table id="linki">
     <tr id="glosuj_data"> 
-      <td id="ocena">ow gore / w dol</td>
+      <td id="ocena">w góre / w dól</td>
       <td id="data">data: <%= link.created_at %></td>
    </tr>
    <tr>
-      <th COLSPAN=2 id="tytul"><%= link.title %></th>    
+	<th COLSPAN=2 id="user_name"> <%= link.user.username %></th>
    </tr>
+   <tr>
+      <th COLSPAN=2 id="tytul"><%= link.title %></th>    
+   </tr> 
    <tr>    
       <td COLSPAN=2 id="url"><a href="http://<%= link.url %>"><%= link.url %></a></td>
    </tr>
@@ -22,7 +29,7 @@ Sortowanie:
    </tr>
    <tr id="ocena_komentarz">
       <td> ocena: 15 </td>
-      <td id="kom"> Komentarze (18) </td>
+      <td id="kom">  <%= link_to "Komentarze", link %> (<%= link.comments.length %>) </td>
    </tr>
 	</table>
 	<br/><br/>
@@ -30,4 +37,5 @@ Sortowanie:
 
 
 <%= will_paginate @links %>
+
 
