@@ -19,8 +19,10 @@
   Tagi: <%= @link.tag_list %>
 </p>
 
-<h2>Komentarze</h2>
+<h2>Komentarze :</h2>
+
 <% @link.comments.each do |comment| %>
+<div id="komentarze">
   <p>
     <b>Komentator:</b>
     <%= comment.user.username %>
@@ -37,8 +39,13 @@
                :confirm => 'Napewno?',
                :method => :delete %>
   </p>
+  </div>
+  <br/><br/>
+  
   <% end %>
 <% end %>
+
+
 
 <% if user_signed_in? %>
   <h2>Dodaj komentarz:</h2>
