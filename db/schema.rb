@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110104213054) do
+ActiveRecord::Schema.define(:version => 20110109000953) do
 
   create_table "comments", :force => true do |t|
     t.text     "body"
@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(:version => 20110104213054) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "private"
+    t.string   "commentsAmount"
+    t.integer  "comments_amount"
   end
 
   create_table "taggings", :force => true do |t|

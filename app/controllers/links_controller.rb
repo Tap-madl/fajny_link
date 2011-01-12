@@ -11,11 +11,13 @@ class LinksController < ApplicationController
 
   def index
     # @links = Link.all
-    @links = Link.search(params[:search]).where(:private => false).order(sort_column + " " + sort_direction).paginate(:per_page => 5, :page => params[:page]) # +
+    @links = Link.search(params[:search]).where(:private => false).order(sort_column + " " + sort_direction).paginate(:per_page => 10, :page => params[:page]) # +
   end
 
   def show
     @link = Link.find(params[:id])
+    @link.comments_amount = @link.comments.length
+    @link.save
   end
 
   def new
