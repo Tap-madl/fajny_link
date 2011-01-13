@@ -1,3 +1,4 @@
+##MOZE TYM RAZEM SIE UDA
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.3'
