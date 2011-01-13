@@ -1,17 +1,15 @@
 <table class="pretty">
   <tr>
-	  <!-- atrubut sortowania -->
-    <th><%= sortable "created_at", "Data wstawienia" %></th>	  
+	  <!-- atrubut sortowania -->	  
     <th><%= sortable "title", "Tytuł" %></th>
     <th><%= sortable "url", "Url" %></th>
     <th><%= sortable "body", "Opis" %></th>
-    <th><%= sortable "comments_amount", "Ilość komentarzy" %></th>
   </tr>
 </table>
 
 <br/><br/>
 
-<% for link in @links %>
+ <% for link in @links %>
 <table id="linki">
     <tr id="glosuj_data"> 
       <td id="ocena">w góre / w dól</td>
@@ -31,7 +29,7 @@
    </tr>
    <tr id="ocena_komentarz">
       <td> ocena: 15 </td>
-      <td id="kom">  <%= link_to "Komentarze", link %> (<%= link.comments_amount %>) </td>
+      <td id="kom">  <%= link_to "Komentarze", link %> (<%= link.comments.length %>) </td>
    </tr>
 	</table>
 	<br/><br/>
